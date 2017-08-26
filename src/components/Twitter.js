@@ -17,6 +17,7 @@ export default class Twitt {
       access_token_secret,
     });
   }
+
   follow(users, discordClient) {
     this.client.stream(
       'statuses/filter',
@@ -41,8 +42,8 @@ export default class Twitt {
           }
         });
 
-        stream.on('error', error => {
-          throw error;
+        stream.on('error', err => {
+          throw err;
         });
       }
     );
