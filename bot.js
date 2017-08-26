@@ -2,14 +2,28 @@ import Discord from './Discord';
 import Twitter from './Twitter';
 
 /* eslint-disable camelcase */
-const token = process.env.token;
-const consumer_key = process.env.consumer_key;
-const consumer_secret = process.env.consumer_secret;
-const access_token_key = process.env.access_token_key;
-const access_token_secret = process.env.access_token_secret;
+let token;
+let consumer_key;
+let consumer_secret;
+let access_token_key;
+let access_token_secret;
+
+/* eslint-disable global-require */
+try {
+  token = require('./keys.js').token;
+  consumer_key = require('./keys.js').consumer_key;
+  consumer_secret = require('./keys.js').consumer_secret;
+  access_token_key = require('./keys.js').access_token_key;
+  access_token_secret = require('./keys.js').access_token_secret;
+} catch (err) {
+  token = process.env.token;
+  consumer_key = process.env.consumer_key;
+  consumer_secret = process.env.consumer_secret;
+  access_token_key = process.env.access_token_key;
+  access_token_secret = process.env.access_token_secret;
+}
 
 const bot = new Discord(token);
-bot.start();
 
 const twitter = new Twitter(
   consumer_key,

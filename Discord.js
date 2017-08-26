@@ -3,6 +3,7 @@ import DiscordJS from 'discord.js';
 export default class Discord {
   constructor(token) {
     this.token = token;
+    this.start();
   }
 
   start() {
